@@ -87,7 +87,7 @@ class HomePage extends StatelessWidget {
                 function: () {},
               ),
               ActionButton(
-                text: '+',
+                text: '-',
                 color: Colors.orange,
                 function: () {},
               ),

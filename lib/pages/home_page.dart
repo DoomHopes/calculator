@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: <Widget>[
-            Expanded(child: Container()),
+            Expanded(child: buildResult()),
             Expanded(child: buildButtons(), flex: 2),
           ],
         ),
@@ -62,3 +62,24 @@ Widget buildButtonRow(
     ),
   );
 }
+
+Widget buildResult() => Container(
+      padding: const EdgeInsets.all(24),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            '0',
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(color: Colors.white, fontSize: 36),
+          ),
+          const SizedBox(height: 24),
+          Text(
+            '0',
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(color: Colors.grey, fontSize: 18),
+          ),
+        ],
+      ),
+    );

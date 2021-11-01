@@ -1,6 +1,5 @@
 import 'package:calculator/utils/colors.dart';
-import 'package:calculator/widgets/action_button.dart';
-import 'package:calculator/widgets/result_display.dart';
+import 'package:calculator/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -11,7 +10,6 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Calculator'),
-        centerTitle: true,
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
       ),
@@ -33,113 +31,34 @@ Widget buildButtons() => Container(
         color: MyColors.backgroung1,
         borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
       ),
-    );
-
-/**
- *  Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      child: Column(
         children: <Widget>[
-          ResultDisplay(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              ActionButton(
-                text: '7',
-                color: Colors.grey,
-                function: () {},
-              ),
-              ActionButton(
-                text: '8',
-                color: Colors.grey,
-                function: () {},
-              ),
-              ActionButton(
-                text: '9',
-                color: Colors.grey,
-                function: () {},
-              ),
-              ActionButton(
-                text: '+',
-                color: Colors.orange,
-                function: () {},
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              ActionButton(
-                text: '4',
-                color: Colors.grey,
-                function: () {},
-              ),
-              ActionButton(
-                text: '5',
-                color: Colors.grey,
-                function: () {},
-              ),
-              ActionButton(
-                text: '6',
-                color: Colors.grey,
-                function: () {},
-              ),
-              ActionButton(
-                text: '/',
-                color: Colors.orange,
-                function: () {},
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              ActionButton(
-                text: '1',
-                color: Colors.grey,
-                function: () {},
-              ),
-              ActionButton(
-                text: '2',
-                color: Colors.grey,
-                function: () {},
-              ),
-              ActionButton(
-                text: '3',
-                color: Colors.grey,
-                function: () {},
-              ),
-              ActionButton(
-                text: '-',
-                color: Colors.orange,
-                function: () {},
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              ActionButton(
-                text: '0',
-                color: Colors.grey,
-                function: () {},
-              ),
-              ActionButton(
-                text: ',',
-                color: Colors.grey,
-                function: () {},
-              ),
-              ActionButton(
-                text: 'C',
-                color: Colors.orange,
-                function: () {},
-              ),
-              ActionButton(
-                text: '=',
-                color: Colors.orange,
-                function: () {},
-              ),
-            ],
-          ),
+          buildButtonRow('AC', '<', '', '/'),
+          buildButtonRow('7', '8', '9', '*'),
+          buildButtonRow('4', '5', '6', '+'),
+          buildButtonRow('1', '2', '3', '-'),
+          buildButtonRow('0', '.', '', '='),
         ],
       ),
- */
+    );
+
+Widget buildButtonRow(
+  String first,
+  String second,
+  String third,
+  String fourth,
+) {
+  final row = {first, second, third, fourth};
+
+  return Expanded(
+    child: Row(
+      children: row
+          .map((text) => ButtonWidget(
+                text: text,
+                onClicked: () => print(text),
+                onClickedLong: () => print(text),
+              ))
+          .toList(),
+    ),
+  );
+}

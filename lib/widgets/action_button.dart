@@ -12,8 +12,8 @@ class ActionButton extends StatelessWidget {
     required this.text,
     required this.color,
     required this.function,
-    this.height = 80,
-    this.width = 80,
+    this.height = 60,
+    this.width = 60,
   }) : super(key: key);
 
   @override
@@ -25,12 +25,14 @@ class ActionButton extends StatelessWidget {
         width: width,
         decoration: BoxDecoration(
           color: color,
+          shape: BoxShape.circle,
         ),
         child: Center(
           child: Text(
             text,
             style: const TextStyle(
               color: Colors.black,
+              fontSize: 20,
             ),
           ),
         ),

@@ -12,10 +12,8 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               ActionButton(
                 text: '7',
@@ -32,10 +30,14 @@ class HomePage extends StatelessWidget {
                 color: Colors.grey,
                 function: () {},
               ),
+              ActionButton(
+                text: '+',
+                color: Colors.grey,
+                function: () {},
+              ),
             ],
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               ActionButton(
                 text: '4',
@@ -52,10 +54,14 @@ class HomePage extends StatelessWidget {
                 color: Colors.grey,
                 function: () {},
               ),
+              ActionButton(
+                text: '/',
+                color: Colors.grey,
+                function: () {},
+              ),
             ],
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               ActionButton(
                 text: '1',
@@ -72,8 +78,37 @@ class HomePage extends StatelessWidget {
                 color: Colors.grey,
                 function: () {},
               ),
+              ActionButton(
+                text: '+',
+                color: Colors.grey,
+                function: () {},
+              ),
             ],
-          )
+          ),
+          Row(
+            children: <Widget>[
+              ActionButton(
+                text: '0',
+                color: Colors.grey,
+                function: () {},
+              ),
+              ActionButton(
+                text: ',',
+                color: Colors.grey,
+                function: () {},
+              ),
+              ActionButton(
+                text: 'C',
+                color: Colors.grey,
+                function: () {},
+              ),
+              ActionButton(
+                text: '=',
+                color: Colors.grey,
+                function: () {},
+              ),
+            ],
+          ),
         ],
       ),
     );

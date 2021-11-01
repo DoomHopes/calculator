@@ -1,3 +1,4 @@
+import 'package:calculator/utils/colors.dart';
 import 'package:calculator/widgets/action_button.dart';
 import 'package:calculator/widgets/result_display.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,28 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
       ),
-      body: Column(
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Expanded(child: Container()),
+            Expanded(child: buildButtons(), flex: 2),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+Widget buildButtons() => Container(
+      padding: const EdgeInsets.all(16),
+      decoration: const BoxDecoration(
+        color: MyColors.backgroung1,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+      ),
+    );
+
+/**
+ *  Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           ResultDisplay(),
@@ -120,6 +142,4 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
+ */

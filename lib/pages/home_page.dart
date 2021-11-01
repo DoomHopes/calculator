@@ -1,3 +1,4 @@
+import 'package:calculator/widgets/action_button.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -6,7 +7,75 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const Center(child: Text('Bite my shiny metal ass')),
+      appBar: AppBar(
+        title: const Text('Calculator'),
+        centerTitle: true,
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              ActionButton(
+                text: '7',
+                color: Colors.grey,
+                function: () {},
+              ),
+              ActionButton(
+                text: '8',
+                color: Colors.grey,
+                function: () {},
+              ),
+              ActionButton(
+                text: '9',
+                color: Colors.grey,
+                function: () {},
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              ActionButton(
+                text: '4',
+                color: Colors.grey,
+                function: () {},
+              ),
+              ActionButton(
+                text: '5',
+                color: Colors.grey,
+                function: () {},
+              ),
+              ActionButton(
+                text: '6',
+                color: Colors.grey,
+                function: () {},
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              ActionButton(
+                text: '1',
+                color: Colors.grey,
+                function: () {},
+              ),
+              ActionButton(
+                text: '2',
+                color: Colors.grey,
+                function: () {},
+              ),
+              ActionButton(
+                text: '3',
+                color: Colors.grey,
+                function: () {},
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 }

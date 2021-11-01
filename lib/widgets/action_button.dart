@@ -12,8 +12,8 @@ class ActionButton extends StatelessWidget {
     required this.text,
     required this.color,
     required this.function,
-    this.height = 40,
-    this.width = 40,
+    this.height = 80,
+    this.width = 80,
   }) : super(key: key);
 
   @override
@@ -21,12 +21,19 @@ class ActionButton extends StatelessWidget {
     return GestureDetector(
       onTap: null,
       child: Container(
-        height: 40,
-        width: 40,
+        height: height,
+        width: width,
         decoration: BoxDecoration(
           color: color,
         ),
-        child: Center(child: Text(text)),
+        child: Center(
+          child: Text(
+            text,
+            style: const TextStyle(
+              color: Colors.black,
+            ),
+          ),
+        ),
       ),
     );
   }

@@ -11,6 +11,8 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Calculator'),
         centerTitle: true,
+        backgroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

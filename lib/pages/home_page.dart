@@ -1,4 +1,5 @@
 import 'package:calculator/widgets/action_button.dart';
+import 'package:calculator/widgets/result_display.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -12,8 +13,11 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
+          ResultDisplay(),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               ActionButton(
                 text: '7',
@@ -32,12 +36,13 @@ class HomePage extends StatelessWidget {
               ),
               ActionButton(
                 text: '+',
-                color: Colors.grey,
+                color: Colors.orange,
                 function: () {},
               ),
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               ActionButton(
                 text: '4',
@@ -56,12 +61,13 @@ class HomePage extends StatelessWidget {
               ),
               ActionButton(
                 text: '/',
-                color: Colors.grey,
+                color: Colors.orange,
                 function: () {},
               ),
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               ActionButton(
                 text: '1',
@@ -80,12 +86,13 @@ class HomePage extends StatelessWidget {
               ),
               ActionButton(
                 text: '+',
-                color: Colors.grey,
+                color: Colors.orange,
                 function: () {},
               ),
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               ActionButton(
                 text: '0',
@@ -99,12 +106,12 @@ class HomePage extends StatelessWidget {
               ),
               ActionButton(
                 text: 'C',
-                color: Colors.grey,
+                color: Colors.orange,
                 function: () {},
               ),
               ActionButton(
                 text: '=',
-                color: Colors.grey,
+                color: Colors.orange,
                 function: () {},
               ),
             ],

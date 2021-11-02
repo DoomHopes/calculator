@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: <Widget>[
-            Expanded(child: ResultWidget()),
+            const Expanded(child: ResultWidget()),
             Expanded(child: buildButtons(context), flex: 2),
           ],
         ),

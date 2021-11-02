@@ -27,7 +27,7 @@ class ResultWidget extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                textNotifier.result.toString(),
+                textNotifier.result,
                 textAlign: TextAlign.right,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(color: Colors.grey, fontSize: 36),

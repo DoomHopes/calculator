@@ -1,5 +1,6 @@
 import 'package:calculator/utils/colors.dart';
 import 'package:calculator/widgets/button_widget.dart';
+import 'package:calculator/widgets/result_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,7 +17,7 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: <Widget>[
-            Expanded(child: buildResult()),
+            Expanded(child: ResultWidget()),
             Expanded(child: buildButtons(), flex: 2),
           ],
         ),
@@ -62,24 +63,3 @@ Widget buildButtonRow(
     ),
   );
 }
-
-Widget buildResult() => Container(
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Text(
-            '0',
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(color: Colors.white, fontSize: 36),
-          ),
-          const SizedBox(height: 24),
-          Text(
-            '0',
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(color: Colors.grey, fontSize: 18),
-          ),
-        ],
-      ),
-    );

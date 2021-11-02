@@ -26,7 +26,7 @@ class ButtonWidget extends StatelessWidget {
     return Expanded(
       child: Container(
         height: double.infinity,
-        margin: EdgeInsets.all(6),
+        margin: const EdgeInsets.all(6),
         child: ElevatedButton(
           onPressed: onClicked,
           onLongPress: onClickedLong,

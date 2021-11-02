@@ -10,17 +10,12 @@ class ResultWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
+        children: const <Widget>[
           Text(
             '0',
+            textAlign: TextAlign.right,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(color: Colors.white, fontSize: 36),
-          ),
-          const SizedBox(height: 24),
-          Text(
-            '0',
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(color: Colors.grey, fontSize: 18),
+            style: TextStyle(color: Colors.white, fontSize: 36),
           ),
         ],
       ),

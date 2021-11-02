@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 class ButtonWidget extends StatelessWidget {
   final String text;
   final VoidCallback onClicked;
-  final VoidCallback onClickedLong;
+  //final VoidCallback onClickedLong;
 
   const ButtonWidget({
     required this.text,
     required this.onClicked,
-    required this.onClickedLong,
+    //required this.onClickedLong,
   });
 
   @override
@@ -29,7 +29,7 @@ class ButtonWidget extends StatelessWidget {
         margin: const EdgeInsets.all(6),
         child: ElevatedButton(
           onPressed: onClicked,
-          onLongPress: onClickedLong,
+          //onLongPress: onClickedLong,
           style: ElevatedButton.styleFrom(
             primary: MyColors.backgroung1,
             elevation: 0,

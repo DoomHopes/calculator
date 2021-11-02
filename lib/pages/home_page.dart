@@ -1,7 +1,11 @@
+import 'package:calculator/application/calculate_notifier.dart';
 import 'package:calculator/utils/colors.dart';
 import 'package:calculator/widgets/button_widget.dart';
 import 'package:calculator/widgets/result_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final calculateNotifier = ChangeNotifierProvider((ref) => CalculateNotifier());
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -18,7 +22,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Expanded(child: ResultWidget()),
-            Expanded(child: buildButtons(), flex: 2),
+            Expanded(child: buildButtons(context), flex: 2),
           ],
         ),
       ),
@@ -26,7 +30,7 @@ class HomePage extends StatelessWidget {
   }
 }
 
-Widget buildButtons() => Container(
+Widget buildButtons(BuildContext context) => Container(
       padding: const EdgeInsets.all(16),
       decoration: const BoxDecoration(
         color: MyColors.backgroung1,
@@ -34,16 +38,17 @@ Widget buildButtons() => Container(
       ),
       child: Column(
         children: <Widget>[
-          buildButtonRow('AC', '<', '', '/'),
-          buildButtonRow('7', '8', '9', '*'),
-          buildButtonRow('4', '5', '6', '+'),
-          buildButtonRow('1', '2', '3', '-'),
-          buildButtonRow('0', '.', '', '='),
+          buildButtonRow(context, 'AC', '<', '', '/'),
+          buildButtonRow(context, '7', '8', '9', '*'),
+          buildButtonRow(context, '4', '5', '6', '+'),
+          buildButtonRow(context, '1', '2', '3', '-'),
+          buildButtonRow(context, '0', '.', '', '='),
         ],
       ),
     );
 
 Widget buildButtonRow(
+  BuildContext context,
   String first,
   String second,
   String third,
@@ -54,11 +59,15 @@ Widget buildButtonRow(
   return Expanded(
     child: Row(
       children: row
-          .map((text) => ButtonWidget(
-                text: text,
-                onClicked: () => print(text),
-                onClickedLong: () => print(text),
-              ))
+          .map(
+            (text) => ButtonWidget(
+              text: text,
+              onClicked: () {
+                context.read(calculateNotifier).onClick(text);
+              },
+              //onClickedLong: () => print(text),
+            ),
+          )
           .toList(),
     ),
   );

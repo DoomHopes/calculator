@@ -1,4 +1,3 @@
-import 'package:calculator/application/calculate_notifier.dart';
 import 'package:calculator/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,6 +19,7 @@ class ResultWidget extends StatelessWidget {
               Text(
                 textNotifier.showExpression(),
                 textAlign: TextAlign.right,
+                maxLines: 5,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(color: Colors.white, fontSize: 23),
               ),

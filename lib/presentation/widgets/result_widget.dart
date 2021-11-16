@@ -19,7 +19,7 @@ class ResultWidget extends StatelessWidget {
               Text(
                 textNotifier.showExpression(),
                 textAlign: TextAlign.right,
-                maxLines: 5,
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(color: Colors.white, fontSize: 23),
               ),

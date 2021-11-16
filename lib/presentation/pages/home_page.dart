@@ -22,13 +22,42 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             const Expanded(child: ResultWidget()),
-            Expanded(child: buildButtons(context), flex: 2),
+            Expanded(child: buildButtons(context), flex: 3),
           ],
         ),
       ),
     );
   }
 }
+
+Widget buildPanel(BuildContext context) => Container(
+      width: double.infinity,
+      height: 36,
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Row(
+        children: <Widget>[
+          ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              shadowColor: Colors.transparent,
+              primary: MyColors.backgroung1,
+            ),
+            child: const Icon(Icons.history),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              shadowColor: Colors.transparent,
+              primary: MyColors.backgroung1,
+            ),
+            child: const Icon(Icons.rule_folder_outlined),
+          ),
+        ],
+      ),
+    );
 
 Widget buildButtons(BuildContext context) => Container(
       padding: const EdgeInsets.all(16),
@@ -38,6 +67,10 @@ Widget buildButtons(BuildContext context) => Container(
       ),
       child: Column(
         children: <Widget>[
+          buildPanel(context),
+          const Divider(
+            height: 20,
+          ),
           buildButtonRow(context, 'AC', '<', '%', '/'),
           buildButtonRow(context, '7', '8', '9', '*'),
           buildButtonRow(context, '4', '5', '6', '+'),

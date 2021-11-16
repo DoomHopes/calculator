@@ -1,5 +1,5 @@
-import 'package:calculator/utils/colors.dart';
-import 'package:calculator/utils/utils.dart';
+import 'package:calculator/presentation/utils/colors.dart';
+import 'package:calculator/presentation/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class ButtonWidget extends StatelessWidget {
@@ -53,6 +53,7 @@ class ButtonWidget extends StatelessWidget {
       case '*':
       case '/':
       case '=':
+      case '%':
         return MyColors.buttonIconColor2;
       case 'AC':
       case '<':

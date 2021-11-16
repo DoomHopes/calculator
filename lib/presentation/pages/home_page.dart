@@ -1,7 +1,7 @@
 import 'package:calculator/application/calculate_notifier.dart';
-import 'package:calculator/utils/colors.dart';
-import 'package:calculator/widgets/button_widget.dart';
-import 'package:calculator/widgets/result_widget.dart';
+import 'package:calculator/presentation/utils/colors.dart';
+import 'package:calculator/presentation/widgets/button_widget.dart';
+import 'package:calculator/presentation/widgets/result_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -38,7 +38,7 @@ Widget buildButtons(BuildContext context) => Container(
       ),
       child: Column(
         children: <Widget>[
-          buildButtonRow(context, 'AC', '<', '', '/'),
+          buildButtonRow(context, 'AC', '<', '%', '/'),
           buildButtonRow(context, '7', '8', '9', '*'),
           buildButtonRow(context, '4', '5', '6', '+'),
           buildButtonRow(context, '1', '2', '3', '-'),

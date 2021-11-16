@@ -38,6 +38,10 @@ class CalculateNotifier extends ChangeNotifier {
         return;
       }
 
+      if (symbol == '+' || symbol == '-' || symbol == '*' || symbol == '/') {
+        calculate();
+      }
+
       if (symbol == '=') {
         if (operations.containsKey(expression.last)) {
           expression.removeLast();

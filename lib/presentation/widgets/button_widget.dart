@@ -54,6 +54,7 @@ class ButtonWidget extends StatelessWidget {
       case '/':
       case '=':
       case '%':
+      case '()':
         return MyColors.buttonIconColor2;
       case 'AC':
       case '<':

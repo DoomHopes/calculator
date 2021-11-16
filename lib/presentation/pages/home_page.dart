@@ -42,7 +42,7 @@ Widget buildButtons(BuildContext context) => Container(
           buildButtonRow(context, '7', '8', '9', '*'),
           buildButtonRow(context, '4', '5', '6', '+'),
           buildButtonRow(context, '1', '2', '3', '-'),
-          buildButtonRow(context, '0', '.', '', '='),
+          buildButtonRow(context, '0', '.', '()', '='),
         ],
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:calculator/application/calculate_notifier.dart';
+import 'package:calculator/presentation/pages/converter_page.dart';
 import 'package:calculator/presentation/utils/colors.dart';
 import 'package:calculator/presentation/widgets/button_widget.dart';
 import 'package:calculator/presentation/widgets/result_widget.dart';
@@ -42,7 +43,12 @@ Widget buildButtons(BuildContext context) => Scaffold(
         backgroundColor: Colors.transparent,
         title: IconButton(
           onPressed: () {
-            //TODO Unit converter
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ConverterPage(),
+              ),
+            );
           },
           icon: const Icon(Icons.rule_folder_outlined),
         ),

@@ -59,7 +59,50 @@ Widget buildPanel(BuildContext context) => Container(
       ),
     );
 
-Widget buildButtons(BuildContext context) => Container(
+Widget buildButtons(BuildContext context) => Scaffold(
+      drawer: Drawer(
+        child: Container(
+          color: Colors.red,
+        ),
+      ),
+      appBar: AppBar(
+        shadowColor: Colors.transparent,
+        backgroundColor: Colors.transparent,
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.history),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: const BoxDecoration(
+          color: MyColors.backgroung1,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+        ),
+        child: Column(
+          children: <Widget>[
+            /*buildPanel(context),
+            const Divider(
+              height: 20,
+            ),*/
+            buildButtonRow(context, 'AC', '<', '%', '/'),
+            buildButtonRow(context, '7', '8', '9', '*'),
+            buildButtonRow(context, '4', '5', '6', '+'),
+            buildButtonRow(context, '1', '2', '3', '-'),
+            buildButtonRow(context, '0', '.', '()', '='),
+          ],
+        ),
+      ),
+    );
+
+/*Widget buildButtons(BuildContext context) => Container(
       padding: const EdgeInsets.all(16),
       decoration: const BoxDecoration(
         color: MyColors.backgroung1,
@@ -79,7 +122,7 @@ Widget buildButtons(BuildContext context) => Container(
         ],
       ),
     );
-
+*/
 Widget buildButtonRow(
   BuildContext context,
   String first,

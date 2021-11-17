@@ -42,12 +42,6 @@ class CalculateNotifier extends ChangeNotifier {
         return;
       }
 
-      if (operations.containsKey(symbol)) {
-        calculate();
-      } else {
-        result = '0';
-      }
-
       if (symbol == '=') {
         if (operations.containsKey(expression.last)) {
           expression.removeLast();
@@ -62,14 +56,23 @@ class CalculateNotifier extends ChangeNotifier {
         notifyListeners();
         return;
       }
-
       if (operations.containsKey(symbol)) {
-        if (operations.containsKey(expression.last)) {
+        // calculate();
+        if (operations.containsKey(expression.last) &&
+            (expression.last == '(' || expression.last == ')')) {
+          print('заменяем ласт...');
           expression[expression.length - 1] = symbol;
         } else {
-          expression.add(symbol);
+          print('s: $symbol');
+          if (symbol == '(' || symbol == ')') {
+            bool isInputWillCorrect = isInputBracketSymbolCorrect(symbol);
+            isInputWillCorrect ? expression.add(symbol) : null;
+          } else {
+            expression.add(symbol);
+          }
         }
       } else {
+        //result = '0';
         if (operations.containsKey(expression.last)) {
           expression.add('');
         }
@@ -82,6 +85,26 @@ class CalculateNotifier extends ChangeNotifier {
       result = '0';
     }
     notifyListeners();
+  }
+
+  bool isInputBracketSymbolCorrect(String symbol) {
+    //String oppositeBracketSymbol = symbol == '(' ? ')' : '(';
+    int leftBracketsCount = 0;
+    int rightBracketsCount = 0;
+    for (var symb in expression) {
+      symb == '(' ? leftBracketsCount++ : rightBracketsCount++;
+    }
+    print('cur symbol: $symbol');
+    print('left brackets: $leftBracketsCount');
+    print('right brackets: $rightBracketsCount');
+    if (symbol == ')') {
+      if (leftBracketsCount == rightBracketsCount) {
+        return false;
+      }
+      return true; // replace
+    } else {
+      return true;
+    }
   }
 
   String showExpression() {

@@ -70,15 +70,26 @@ Widget buildButtons(BuildContext context) => Scaffold(
         backgroundColor: Colors.transparent,
         leading: Builder(
           builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(Icons.history),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            return Row(
+              children: <Widget>[
+                IconButton(
+                  icon: const Icon(Icons.history),
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  tooltip:
+                      MaterialLocalizations.of(context).openAppDrawerTooltip,
+                ),
+              ],
             );
           },
         ),
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.rule_folder_outlined),
+          ),
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.all(16),
@@ -88,10 +99,6 @@ Widget buildButtons(BuildContext context) => Scaffold(
         ),
         child: Column(
           children: <Widget>[
-            /*buildPanel(context),
-            const Divider(
-              height: 20,
-            ),*/
             buildButtonRow(context, 'AC', '<', '%', '/'),
             buildButtonRow(context, '7', '8', '9', '*'),
             buildButtonRow(context, '4', '5', '6', '+'),
@@ -123,6 +130,7 @@ Widget buildButtons(BuildContext context) => Scaffold(
       ),
     );
 */
+
 Widget buildButtonRow(
   BuildContext context,
   String first,

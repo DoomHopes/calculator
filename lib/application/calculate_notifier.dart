@@ -7,6 +7,8 @@ enum Operations {
   divide,
   multiply,
   percent,
+  leftBracket,
+  rightBracket,
 }
 
 class CalculateNotifier extends ChangeNotifier {
@@ -20,6 +22,8 @@ class CalculateNotifier extends ChangeNotifier {
     '*': Operations.multiply,
     '/': Operations.divide,
     '%': Operations.percent,
+    '(': Operations.leftBracket,
+    ')': Operations.rightBracket,
   };
 
   void onClick(String symbol) {

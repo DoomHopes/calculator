@@ -30,66 +30,30 @@ class HomePage extends StatelessWidget {
   }
 }
 
-Widget buildPanel(BuildContext context) => Container(
-      width: double.infinity,
-      height: 36,
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Row(
-        children: <Widget>[
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              shadowColor: Colors.transparent,
-              primary: MyColors.backgroung1,
-            ),
-            child: const Icon(Icons.history),
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              shadowColor: Colors.transparent,
-              primary: MyColors.backgroung1,
-            ),
-            child: const Icon(Icons.rule_folder_outlined),
-          ),
-        ],
-      ),
-    );
-
 Widget buildButtons(BuildContext context) => Scaffold(
       drawer: Drawer(
         child: Container(
-          color: Colors.red,
+          color: Colors.green[900],
         ),
       ),
       appBar: AppBar(
         shadowColor: Colors.transparent,
         backgroundColor: Colors.transparent,
+        title: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.rule_folder_outlined),
+        ),
         leading: Builder(
           builder: (BuildContext context) {
-            return Row(
-              children: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.history),
-                  onPressed: () {
-                    Scaffold.of(context).openDrawer();
-                  },
-                  tooltip:
-                      MaterialLocalizations.of(context).openAppDrawerTooltip,
-                ),
-              ],
+            return IconButton(
+              icon: const Icon(Icons.history),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             );
           },
         ),
-        actions: <Widget>[
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.rule_folder_outlined),
-          ),
-        ],
       ),
       body: Container(
         padding: const EdgeInsets.all(16),

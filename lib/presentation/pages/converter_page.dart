@@ -1,15 +1,6 @@
+import 'package:calculator/presentation/utils/arrays.dart';
 import 'package:calculator/presentation/widgets/input_widget.dart';
 import 'package:flutter/material.dart';
-
-List<String> squares = [
-  'Acres',
-  'Macaws',
-  'Hectares',
-  'Square centimeters',
-  'Square feet',
-  'Square inches',
-  'Square meters'
-];
 
 class ConverterPage extends StatefulWidget {
   const ConverterPage({Key? key}) : super(key: key);

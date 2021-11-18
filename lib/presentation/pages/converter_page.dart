@@ -5,9 +5,6 @@ import 'package:calculator/presentation/widgets/drop_down_widget.dart';
 import 'package:calculator/presentation/widgets/input_widget.dart';
 import 'package:flutter/material.dart';
 
-final TextEditingController _firstController = TextEditingController();
-final TextEditingController _secondController = TextEditingController();
-
 class ConverterPage extends StatefulWidget {
   const ConverterPage({Key? key}) : super(key: key);
 
@@ -18,6 +15,10 @@ class ConverterPage extends StatefulWidget {
 class _ConverterPageState extends State<ConverterPage>
     with TickerProviderStateMixin {
   late TabController _tabController;
+  final TextEditingController _firstController = TextEditingController();
+  final FocusNode _firstFocusNode = FocusNode();
+  final TextEditingController _secondController = TextEditingController();
+  final FocusNode _secondFocusNode = FocusNode();
 
   @override
   void initState() {
@@ -85,6 +86,8 @@ class _ConverterPageState extends State<ConverterPage>
           const SizedBox(
             height: 5,
           ),
+
+          // тперь другой вопрос как мне с каливатуры вводить данные в TextField
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             width: double.infinity,
@@ -94,7 +97,7 @@ class _ConverterPageState extends State<ConverterPage>
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
-            child: input(_firstController, (String value) {}),
+            child: input(_firstController, _firstFocusNode, (String value) {}),
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -105,7 +108,8 @@ class _ConverterPageState extends State<ConverterPage>
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
-            child: input(_secondController, (String value) {}),
+            child:
+                input(_secondController, _secondFocusNode, (String value) {}),
           ),
           Expanded(
             child: Container(
@@ -128,28 +132,45 @@ class _ConverterPageState extends State<ConverterPage>
       ),
     );
   }
-}
 
-Widget buildButtonRow(
-  BuildContext context,
-  String first,
-  String second,
-  String third,
-) {
-  final row = {first, second, third};
+  Widget buildButtonRow(
+    BuildContext context,
+    String first,
+    String second,
+    String third,
+  ) {
+    final row = {first, second, third};
 
-  return Expanded(
-    child: Row(
-      children: row
-          .map(
-            (text) => ButtonWidget(
-              text: text,
-              onClicked: () {
-                //TODO Something
-              },
-            ),
-          )
-          .toList(),
-    ),
-  );
+    return Expanded(
+      child: Row(
+        children: row
+            .map(
+              (text) => ButtonWidget(
+                text: text,
+                onClicked: () {
+                  setState(() {
+                    if (_firstFocusNode.hasFocus) {
+                      if (text == '<') {
+                        _firstController.text = _firstController.text
+                            .substring(0, _firstController.text.length - 1);
+                      } else {
+                        _firstController.text += text;
+                      }
+                    }
+                    if (_secondFocusNode.hasFocus) {
+                      if (text == '<') {
+                        _secondController.text = _secondController.text
+                            .substring(0, _secondController.text.length - 1);
+                      } else {
+                        _secondController.text += text;
+                      }
+                    }
+                  });
+                },
+              ),
+            )
+            .toList(),
+      ),
+    );
+  }
 }

@@ -16,6 +16,7 @@ class _DropDownItemState extends State<DropDownItem> {
     return DropdownButton<String>(
       value: dropdownValue,
       icon: const Icon(Icons.arrow_downward),
+      isExpanded: true,
       iconSize: 24,
       elevation: 16,
       onChanged: (String? newValue) {

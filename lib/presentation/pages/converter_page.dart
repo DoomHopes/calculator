@@ -90,7 +90,7 @@ class _ConverterPageState extends State<ConverterPage>
             padding: const EdgeInsets.symmetric(horizontal: 20),
             width: double.infinity,
             child: const DropDownItem(
-              values: MyDropDownElements.squares,
+              values: MyDropDownElements.speed,
             ),
           ),
           Padding(
@@ -101,7 +101,7 @@ class _ConverterPageState extends State<ConverterPage>
             padding: const EdgeInsets.symmetric(horizontal: 20),
             width: double.infinity,
             child: const DropDownItem(
-              values: MyDropDownElements.squares,
+              values: MyDropDownElements.speed,
             ),
           ),
           Padding(

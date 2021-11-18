@@ -1,3 +1,4 @@
+import 'package:calculator/presentation/widgets/input_widget.dart';
 import 'package:flutter/material.dart';
 
 List<String> squares = [
@@ -20,6 +21,9 @@ class ConverterPage extends StatefulWidget {
 class _ConverterPageState extends State<ConverterPage>
     with TickerProviderStateMixin {
   late TabController _tabController;
+
+  final TextEditingController _firstController = TextEditingController();
+  final TextEditingController _secondController = TextEditingController();
 
   @override
   void initState() {
@@ -83,6 +87,17 @@ class _ConverterPageState extends State<ConverterPage>
                 ),
               ],
             ),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: input(_firstController),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: input(_secondController),
           ),
         ],
       ),

@@ -93,11 +93,11 @@ class _ConverterPageState extends State<ConverterPage>
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: input(_firstController),
+            child: input(_firstController, (String value) {}),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: input(_secondController),
+            child: input(_secondController, (String value) {}),
           ),
         ],
       ),

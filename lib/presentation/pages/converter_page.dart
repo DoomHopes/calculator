@@ -1,4 +1,6 @@
 import 'package:calculator/presentation/utils/arrays.dart';
+import 'package:calculator/presentation/utils/colors.dart';
+import 'package:calculator/presentation/widgets/button_widget.dart';
 import 'package:calculator/presentation/widgets/drop_down_widget.dart';
 import 'package:calculator/presentation/widgets/input_widget.dart';
 import 'package:flutter/material.dart';
@@ -105,8 +107,49 @@ class _ConverterPageState extends State<ConverterPage>
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: input(_secondController, (String value) {}),
           ),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              decoration: const BoxDecoration(
+                color: MyColors.backgroung1,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+              ),
+              child: Column(
+                children: <Widget>[
+                  buildButtonRow(context, '7', '8', '9'),
+                  buildButtonRow(context, '4', '5', '6'),
+                  buildButtonRow(context, '1', '2', '3'),
+                  buildButtonRow(context, '0', '.', '<'),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
+}
+
+Widget buildButtonRow(
+  BuildContext context,
+  String first,
+  String second,
+  String third,
+) {
+  final row = {first, second, third};
+
+  return Expanded(
+    child: Row(
+      children: row
+          .map(
+            (text) => ButtonWidget(
+              text: text,
+              onClicked: () {
+                //TODO Something
+              },
+            ),
+          )
+          .toList(),
+    ),
+  );
 }

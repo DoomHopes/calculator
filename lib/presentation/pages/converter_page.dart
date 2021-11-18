@@ -91,12 +91,26 @@ class _ConverterPageState extends State<ConverterPage>
           const SizedBox(
             height: 5,
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: input(_firstController, (String value) {}),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            width: double.infinity,
+            child: DropDownItem(
+              values: squares,
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: input(_firstController, (String value) {}),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            width: double.infinity,
+            child: DropDownItem(
+              values: squares,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
             child: input(_secondController, (String value) {}),
           ),
         ],

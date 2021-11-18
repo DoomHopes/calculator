@@ -5,6 +5,9 @@ import 'package:calculator/presentation/widgets/drop_down_widget.dart';
 import 'package:calculator/presentation/widgets/input_widget.dart';
 import 'package:flutter/material.dart';
 
+final TextEditingController _firstController = TextEditingController();
+final TextEditingController _secondController = TextEditingController();
+
 class ConverterPage extends StatefulWidget {
   const ConverterPage({Key? key}) : super(key: key);
 
@@ -15,9 +18,6 @@ class ConverterPage extends StatefulWidget {
 class _ConverterPageState extends State<ConverterPage>
     with TickerProviderStateMixin {
   late TabController _tabController;
-
-  final TextEditingController _firstController = TextEditingController();
-  final TextEditingController _secondController = TextEditingController();
 
   @override
   void initState() {

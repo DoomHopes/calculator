@@ -8,8 +8,8 @@ Widget input(
       controller: textEditingController,
       style: const TextStyle(fontSize: 20),
       maxLines: 1,
-      //showCursor: true,
-      //readOnly: true,
+      showCursor: true,
+      readOnly: true,
       onChanged: onChanged,
       decoration: const InputDecoration(
         focusedBorder: OutlineInputBorder(

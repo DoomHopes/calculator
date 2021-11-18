@@ -1,4 +1,4 @@
-import 'package:calculator/presentation/utils/arrays.dart';
+import 'package:calculator/presentation/utils/drop_down_elements.dart';
 import 'package:calculator/presentation/utils/colors.dart';
 import 'package:calculator/presentation/widgets/button_widget.dart';
 import 'package:calculator/presentation/widgets/drop_down_widget.dart';
@@ -86,13 +86,11 @@ class _ConverterPageState extends State<ConverterPage>
           const SizedBox(
             height: 5,
           ),
-
-          // тперь другой вопрос как мне с каливатуры вводить данные в TextField
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             width: double.infinity,
-            child: DropDownItem(
-              values: squares,
+            child: const DropDownItem(
+              values: MyDropDownElements.squares,
             ),
           ),
           Padding(
@@ -102,8 +100,8 @@ class _ConverterPageState extends State<ConverterPage>
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             width: double.infinity,
-            child: DropDownItem(
-              values: squares,
+            child: const DropDownItem(
+              values: MyDropDownElements.squares,
             ),
           ),
           Padding(

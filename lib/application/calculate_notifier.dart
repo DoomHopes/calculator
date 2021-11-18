@@ -43,7 +43,13 @@ class CalculateNotifier extends ChangeNotifier {
       }
 
       if (symbol == '=') {
-        if (operations.containsKey(expression.last)) {
+        if (expression.isEmpty) {
+          return;
+        }
+        final lastExpressionSymbol = expression.last;
+        final lastIsNotBracket =
+            lastExpressionSymbol != '(' && lastExpressionSymbol != ')';
+        if (operations.containsKey(expression.last) && lastIsNotBracket) {
           expression.removeLast();
           notifyListeners();
         }
@@ -58,24 +64,72 @@ class CalculateNotifier extends ChangeNotifier {
       }
       if (operations.containsKey(symbol)) {
         // calculate();
-        if (operations.containsKey(expression.last) &&
-            (expression.last == '(' || expression.last == ')')) {
-          print('заменяем ласт...');
-          expression[expression.length - 1] = symbol;
+        // TODO: refactor this if's
+        final lastExpressionSymbol = expression.last;
+        final lastSymbolIsOperator =
+            operations.containsKey(lastExpressionSymbol);
+        final lastIsNotBracket =
+            lastExpressionSymbol != '(' && lastExpressionSymbol != ')';
+        if (lastSymbolIsOperator) {
+          //! Last symbol is operator
+          print('-------- last symbol is operator --------');
+          if (symbol == '(') {
+            //! Inputed symbol is bracket
+            if (lastExpressionSymbol == ')') {
+              //! if last is right bracket we add multiply operator
+              expression.add('*');
+            }
+            print('inputed symbol is left bracket');
+            expression.add(symbol);
+          } else if (symbol == ')' && lastIsNotBracket) {
+            print('inputed symbol is right bracket & last is not bracket');
+            // TODO: check not bracket and don't input
+            final isCorrectInputRightBracket = canInputRightBracket();
+            if (isCorrectInputRightBracket) {
+              //! input right bracket if input will be correct
+              expression.add(symbol);
+            }
+          } else {
+            print('last exp symb: $lastExpressionSymbol');
+            print('last is not bracket: $lastIsNotBracket');
+            if (!lastIsNotBracket) {
+              //! add operator next if last is bracket
+              print('[if statement]');
+              print('symbol: $symbol');
+              final isInputRightBracketIncorrect = !canInputRightBracket();
+              if (symbol == ')' && isInputRightBracketIncorrect) {
+                print('incorrect input right bracket');
+                return;
+              }
+              expression.add(symbol);
+            } else {
+              //! replace operator if it isn't bracket
+              print('[else statement] - replacing...');
+              expression[expression.length - 1] = symbol;
+            }
+          }
         } else {
-          print('s: $symbol');
-          if (symbol == '(' || symbol == ')') {
-            bool isInputWillCorrect = isInputBracketSymbolCorrect(symbol);
-            isInputWillCorrect ? expression.add(symbol) : null;
+          // Когда выражение заканчиваеться на ')', то после
+          // нажатия на = больше нельзя ввести какие либо числа или операторы, а если скобок нет то можно
+          //! Last symbol isn't operator
+          print('-------- last symbol is NOT operator --------');
+          if (symbol == '(') {
+            //! Last is number and we add multiply operator before bracket
+            //if (!lastSymbolIsOperator) {
+            expression.add('*');
+            expression.add(symbol);
+            //}
+            //bool isInputWillCorrect = isInputBracketSymbolCorrect(symbol);
+            //isInputWillCorrect ? expression.add(symbol) : null;
           } else {
             expression.add(symbol);
           }
         }
       } else {
         //result = '0';
-        if (operations.containsKey(expression.last)) {
-          expression.add('');
-        }
+        //if (operations.containsKey(expression.last)) {
+        //  expression.add('');
+        //}
 
         final lastIndex = expression.length - 1;
         expression[lastIndex] = expression.last + symbol;
@@ -87,6 +141,19 @@ class CalculateNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool canInputRightBracket() {
+    int leftBracketsCount = 0;
+    int rightBracketsCount = 0;
+    for (var symb in expression) {
+      symb.contains('(')
+          ? leftBracketsCount++
+          : symb.contains(')')
+              ? rightBracketsCount++
+              : null;
+    }
+    return leftBracketsCount > rightBracketsCount;
+  }
+
   bool isInputBracketSymbolCorrect(String symbol) {
     //String oppositeBracketSymbol = symbol == '(' ? ')' : '(';
     int leftBracketsCount = 0;
@@ -94,9 +161,9 @@ class CalculateNotifier extends ChangeNotifier {
     for (var symb in expression) {
       symb == '(' ? leftBracketsCount++ : rightBracketsCount++;
     }
-    print('cur symbol: $symbol');
-    print('left brackets: $leftBracketsCount');
-    print('right brackets: $rightBracketsCount');
+    //print('cur symbol: $symbol');
+    //print('left brackets: $leftBracketsCount');
+    //print('right brackets: $rightBracketsCount');
     if (symbol == ')') {
       if (leftBracketsCount == rightBracketsCount) {
         return false;

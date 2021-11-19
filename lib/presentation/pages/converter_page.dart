@@ -27,10 +27,6 @@ class _ConverterPageState extends State<ConverterPage>
   void initState() {
     super.initState();
     _tabController = TabController(length: 6, vsync: this);
-
-    _firstController.addListener(() {
-      print('Value changed');
-    });
   }
 
   String _firstDropDownValue = '';
@@ -124,11 +120,12 @@ class _ConverterPageState extends State<ConverterPage>
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: InputWidget(
-                    textEditingController: _firstController,
-                    focusNode: _firstFocusNode,
-                    onChanged: (value) {
-                      _secondController.text = value;
-                    }),
+                  textEditingController: _firstController,
+                  focusNode: _firstFocusNode,
+                  onChanged: () {
+                    dropDownNotifier.calculate();
+                  },
+                ),
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -144,11 +141,12 @@ class _ConverterPageState extends State<ConverterPage>
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 child: InputWidget(
-                    textEditingController: _secondController,
-                    focusNode: _secondFocusNode,
-                    onChanged: (String value) {
-                      print('changed');
-                    }),
+                  textEditingController: _secondController,
+                  focusNode: _secondFocusNode,
+                  onChanged: () {
+                    dropDownNotifier.calculate();
+                  },
+                ),
               ),
               Expanded(
                 child: Container(

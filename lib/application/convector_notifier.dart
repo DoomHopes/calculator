@@ -21,12 +21,7 @@ class ConvectorNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  void calculate(
-    TextEditingController controller,
-    TextEditingController alienController,
-    String dropDownValue,
-    String alienDropDownValue,
-  ) {
+  void calculate() {
     //TODO calculate
   }
 }

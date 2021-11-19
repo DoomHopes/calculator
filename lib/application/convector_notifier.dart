@@ -25,8 +25,27 @@ class ConvectorNotifier extends ChangeNotifier {
       String first, String second) {
     //TODO calculate
     if (dropDownItems == MyDropDownElements.squares) {
-      Area area = Area(double.parse(value), first);
-      num valueIn = area.valueIn(second);
+      num valueIn = Area(double.parse(value), first).valueIn(second);
+      alienController.text = valueIn.toString();
+    }
+    if (dropDownItems == MyDropDownElements.length) {
+      num valueIn = Length(double.parse(value), first).valueIn(second);
+      alienController.text = valueIn.toString();
+    }
+    if (dropDownItems == MyDropDownElements.temperature) {
+      num valueIn = Temperature(double.parse(value), first).valueIn(second);
+      alienController.text = valueIn.toString();
+    }
+    if (dropDownItems == MyDropDownElements.speed) {
+      num valueIn = Speed(double.parse(value), first).valueIn(second);
+      alienController.text = valueIn.toString();
+    }
+    if (dropDownItems == MyDropDownElements.time) {
+      num valueIn = Time(double.parse(value), first).valueIn(second);
+      alienController.text = valueIn.toString();
+    }
+    if (dropDownItems == MyDropDownElements.weight) {
+      num valueIn = Mass(double.parse(value), first).valueIn(second);
       alienController.text = valueIn.toString();
     }
   }

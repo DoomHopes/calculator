@@ -22,11 +22,11 @@ class ConvectorNotifier extends ChangeNotifier {
   }
 
   void calculate(
-      TextEditingController controller,
-      TextEditingController alienController,
-      String dropDownValue,
-      String value) {
-    Area area = Area(double.parse(value), dropDownValue);
-    alienController.text = area.toString();
+    TextEditingController controller,
+    TextEditingController alienController,
+    String dropDownValue,
+    String alienDropDownValue,
+  ) {
+    //TODO calculate
   }
 }

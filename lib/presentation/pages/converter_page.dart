@@ -98,8 +98,12 @@ class _ConverterPageState extends State<ConverterPage>
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 width: double.infinity,
-                child: DropDownItem(
+                child: DropDownWidget(
                   values: dropDownNotifier.dropDownItems,
+                  currentItem: dropDownNotifier.dropDownItems[0],
+                  itemCallBack: (String status) {
+                    dropDownNotifier.dropDownItems[0] = status;
+                  },
                 ),
               ),
               Padding(
@@ -110,8 +114,12 @@ class _ConverterPageState extends State<ConverterPage>
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 width: double.infinity,
-                child: DropDownItem(
+                child: DropDownWidget(
                   values: dropDownNotifier.dropDownItems,
+                  currentItem: dropDownNotifier.dropDownItems[0],
+                  itemCallBack: (String status) {
+                    dropDownNotifier.dropDownItems[0] = status;
+                  },
                 ),
               ),
               Padding(

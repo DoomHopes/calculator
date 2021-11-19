@@ -1,27 +1,45 @@
 import 'package:flutter/material.dart';
 
-class DropDownItem extends StatefulWidget {
+class DropDownWidget extends StatefulWidget {
   final List<String> values;
+  final ValueChanged<String> itemCallBack;
+  String currentItem;
 
-  const DropDownItem({Key? key, required this.values}) : super(key: key);
+  DropDownWidget({
+    Key? key,
+    required this.values,
+    required this.itemCallBack,
+    required this.currentItem,
+  }) : super(key: key);
 
   @override
-  State<DropDownItem> createState() => _DropDownItemState();
+  State<DropDownWidget> createState() => _DropDownWidgetState(currentItem);
 }
 
-class _DropDownItemState extends State<DropDownItem> {
-  late String dropdownValue = widget.values[0];
+class _DropDownWidgetState extends State<DropDownWidget> {
+  String currentItem;
+  _DropDownWidgetState(this.currentItem);
+  @override
+  void didUpdateWidget(DropDownWidget oldWidget) {
+    if (currentItem != widget.currentItem) {
+      setState(() {
+        currentItem = widget.currentItem;
+      });
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
-      value: dropdownValue,
+      value: widget.currentItem,
       icon: const Icon(Icons.arrow_downward),
       isExpanded: true,
       iconSize: 24,
       elevation: 16,
       onChanged: (String? newValue) {
         setState(() {
-          dropdownValue = newValue!;
+          widget.currentItem = newValue!;
         });
       },
       items: widget.values.map<DropdownMenuItem<String>>((String value) {

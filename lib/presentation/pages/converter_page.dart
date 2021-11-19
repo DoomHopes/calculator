@@ -34,10 +34,12 @@ class _ConverterPageState extends State<ConverterPage>
 
   void changeFirstValue(String value) {
     _firstDropDownValue = value;
+    _secondController.text = '';
   }
 
   void changeSecondValue(String value) {
     _secondDropDownValue = value;
+    _firstController.text = '';
   }
 
   @override
@@ -49,6 +51,8 @@ class _ConverterPageState extends State<ConverterPage>
       body: Consumer(
         builder: (context, watch, child) {
           final dropDownNotifier = watch(converterNotifier);
+          _firstDropDownValue = dropDownNotifier.dropDownItems[0];
+          _secondDropDownValue = dropDownNotifier.dropDownItems[0];
           return Column(
             children: <Widget>[
               SizedBox(
@@ -111,7 +115,7 @@ class _ConverterPageState extends State<ConverterPage>
                 width: double.infinity,
                 child: DropDownWidget(
                   values: dropDownNotifier.dropDownItems,
-                  currentItem: dropDownNotifier.dropDownItems[0],
+                  currentItem: _firstDropDownValue,
                   itemCallBack: (String status) {
                     changeFirstValue(status);
                   },
@@ -123,7 +127,12 @@ class _ConverterPageState extends State<ConverterPage>
                   textEditingController: _firstController,
                   focusNode: _firstFocusNode,
                   onChanged: () {
-                    dropDownNotifier.calculate();
+                    dropDownNotifier.calculate(
+                      _secondController,
+                      _firstController.text,
+                      _firstDropDownValue,
+                      _secondDropDownValue,
+                    );
                   },
                 ),
               ),
@@ -132,7 +141,7 @@ class _ConverterPageState extends State<ConverterPage>
                 width: double.infinity,
                 child: DropDownWidget(
                   values: dropDownNotifier.dropDownItems,
-                  currentItem: dropDownNotifier.dropDownItems[0],
+                  currentItem: _secondDropDownValue,
                   itemCallBack: (String status) {
                     changeSecondValue(status);
                   },
@@ -144,7 +153,12 @@ class _ConverterPageState extends State<ConverterPage>
                   textEditingController: _secondController,
                   focusNode: _secondFocusNode,
                   onChanged: () {
-                    dropDownNotifier.calculate();
+                    dropDownNotifier.calculate(
+                      _firstController,
+                      _secondController.text,
+                      _secondDropDownValue,
+                      _firstDropDownValue,
+                    );
                   },
                 ),
               ),
@@ -158,10 +172,14 @@ class _ConverterPageState extends State<ConverterPage>
                   ),
                   child: Column(
                     children: <Widget>[
-                      buildButtonRow(context, '7', '8', '9'),
-                      buildButtonRow(context, '4', '5', '6'),
-                      buildButtonRow(context, '1', '2', '3'),
-                      buildButtonRow(context, '0', '.', '<'),
+                      buildButtonRow(context, '7', '8', '9', _firstController,
+                          _secondController, _firstFocusNode, _secondFocusNode),
+                      buildButtonRow(context, '4', '5', '6', _firstController,
+                          _secondController, _firstFocusNode, _secondFocusNode),
+                      buildButtonRow(context, '1', '2', '3', _firstController,
+                          _secondController, _firstFocusNode, _secondFocusNode),
+                      buildButtonRow(context, '0', '.', '<', _firstController,
+                          _secondController, _firstFocusNode, _secondFocusNode),
                     ],
                   ),
                 ),
@@ -172,53 +190,57 @@ class _ConverterPageState extends State<ConverterPage>
       ),
     );
   }
+}
 
-  Widget buildButtonRow(
-    BuildContext context,
-    String first,
-    String second,
-    String third,
-  ) {
-    final row = {first, second, third};
+Widget buildButtonRow(
+  BuildContext context,
+  String first,
+  String second,
+  String third,
+  TextEditingController _firstController,
+  TextEditingController _secondController,
+  FocusNode _firstFocusNode,
+  FocusNode _secondFocusNode,
+) {
+  final row = {first, second, third};
 
-    return Expanded(
-      child: Row(
-        children: row
-            .map(
-              (text) => ButtonWidget(
-                text: text,
-                onClicked: () {
-                  setState(() {
-                    if (_firstFocusNode.hasFocus) {
-                      if (text == '<') {
-                        if (_firstController.text.isEmpty) {
-                          return;
-                        } else {
-                          _firstController.text = _firstController.text
-                              .substring(0, _firstController.text.length - 1);
-                        }
-                      } else {
-                        _firstController.text += text;
-                      }
+  return Expanded(
+    child: Row(
+      children: row
+          .map(
+            (text) => ButtonWidget(
+              text: text,
+              onClicked: () {
+                if (_firstFocusNode.hasFocus) {
+                  if (text == '<') {
+                    if (_firstController.text.isEmpty) {
+                      _secondController.clear();
+                      return;
+                    } else {
+                      _firstController.text = _firstController.text
+                          .substring(0, _firstController.text.length - 1);
                     }
-                    if (_secondFocusNode.hasFocus) {
-                      if (text == '<') {
-                        if (_secondController.text.isEmpty) {
-                          return;
-                        } else {
-                          _secondController.text = _secondController.text
-                              .substring(0, _secondController.text.length - 1);
-                        }
-                      } else {
-                        _secondController.text += text;
-                      }
+                  } else {
+                    _firstController.text += text;
+                  }
+                }
+                if (_secondFocusNode.hasFocus) {
+                  if (text == '<') {
+                    if (_secondController.text.isEmpty) {
+                      _firstController.clear();
+                      return;
+                    } else {
+                      _secondController.text = _secondController.text
+                          .substring(0, _secondController.text.length - 1);
                     }
-                  });
-                },
-              ),
-            )
-            .toList(),
-      ),
-    );
-  }
+                  } else {
+                    _secondController.text += text;
+                  }
+                }
+              },
+            ),
+          )
+          .toList(),
+    ),
+  );
 }

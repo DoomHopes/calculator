@@ -8,9 +8,10 @@ Widget input(TextEditingController textEditingController, FocusNode focusNode,
       controller: textEditingController,
       style: const TextStyle(fontSize: 20),
       maxLines: 1,
-      showCursor: false,
+      showCursor: true,
       readOnly: true,
       focusNode: focusNode,
+      textAlign: TextAlign.end,
       onChanged: onChanged,
       decoration: const InputDecoration(
         focusedBorder: OutlineInputBorder(

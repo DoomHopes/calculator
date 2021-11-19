@@ -29,6 +29,17 @@ class _ConverterPageState extends State<ConverterPage>
     _tabController = TabController(length: 6, vsync: this);
   }
 
+  String _firstDropDownValue = '';
+  String _secondDropDownValue = '';
+
+  void changeFirstValue(String value) {
+    _firstDropDownValue = value;
+  }
+
+  void changeSecondValue(String value) {
+    _secondDropDownValue = value;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,13 +113,13 @@ class _ConverterPageState extends State<ConverterPage>
                   values: dropDownNotifier.dropDownItems,
                   currentItem: dropDownNotifier.dropDownItems[0],
                   itemCallBack: (String status) {
-                    dropDownNotifier.changeFirstValue(status);
+                    changeFirstValue(status);
                   },
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
-                child: input(_firstController, _firstFocusNode, (String value) {
+                child: input(_firstController, _firstFocusNode, (value) {
                   //TODO
                 }),
               ),
@@ -119,7 +130,7 @@ class _ConverterPageState extends State<ConverterPage>
                   values: dropDownNotifier.dropDownItems,
                   currentItem: dropDownNotifier.dropDownItems[0],
                   itemCallBack: (String status) {
-                    dropDownNotifier.changeSecondValue(status);
+                    changeSecondValue(status);
                   },
                 ),
               ),
@@ -173,16 +184,24 @@ class _ConverterPageState extends State<ConverterPage>
                   setState(() {
                     if (_firstFocusNode.hasFocus) {
                       if (text == '<') {
-                        _firstController.text = _firstController.text
-                            .substring(0, _firstController.text.length - 1);
+                        if (_firstController.text.isEmpty) {
+                          return;
+                        } else {
+                          _firstController.text = _firstController.text
+                              .substring(0, _firstController.text.length - 1);
+                        }
                       } else {
                         _firstController.text += text;
                       }
                     }
                     if (_secondFocusNode.hasFocus) {
                       if (text == '<') {
-                        _secondController.text = _secondController.text
-                            .substring(0, _secondController.text.length - 1);
+                        if (_secondController.text.isEmpty) {
+                          return;
+                        } else {
+                          _secondController.text = _secondController.text
+                              .substring(0, _secondController.text.length - 1);
+                        }
                       } else {
                         _secondController.text += text;
                       }

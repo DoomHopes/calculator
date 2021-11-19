@@ -1,5 +1,6 @@
 import 'package:calculator/presentation/utils/drop_down_elements.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:converter/converter.dart';
 
 class ConvectorNotifier extends ChangeNotifier {
   Set<List<String>> dropDownElements = {
@@ -14,21 +15,18 @@ class ConvectorNotifier extends ChangeNotifier {
   };
 
   late List<String> dropDownItems = dropDownElements.elementAt(0);
-  String _firstDropDownValue = '';
-  String _secondDropDownValue = '';
 
   void changeDropDownItems(value) {
     dropDownItems = dropDownElements.elementAt(value);
     notifyListeners();
   }
 
-  void changeFirstValue(String value) {
-    _firstDropDownValue = value;
+  void calculate(
+      TextEditingController controller,
+      TextEditingController alienController,
+      String dropDownValue,
+      String value) {
+    Area area = Area(double.parse(value), dropDownValue);
+    alienController.text = area.toString();
   }
-
-  void changeSecondValue(String value) {
-    _secondDropDownValue = value;
-  }
-
-  void calculate(TextEditingController alienController) {}
 }

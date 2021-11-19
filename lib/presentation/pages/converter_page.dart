@@ -101,15 +101,13 @@ class _ConverterPageState extends State<ConverterPage>
                 child: DropDownWidget(
                   values: dropDownNotifier.dropDownItems,
                   currentItem: dropDownNotifier.dropDownItems[0],
-                  itemCallBack: (String status) {
-                    dropDownNotifier.dropDownItems[0] = status;
-                  },
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
-                child:
-                    input(_firstController, _firstFocusNode, (String value) {}),
+                child: input(_firstController, _firstFocusNode, (String value) {
+                  //TODO
+                }),
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -117,15 +115,14 @@ class _ConverterPageState extends State<ConverterPage>
                 child: DropDownWidget(
                   values: dropDownNotifier.dropDownItems,
                   currentItem: dropDownNotifier.dropDownItems[0],
-                  itemCallBack: (String status) {
-                    dropDownNotifier.dropDownItems[0] = status;
-                  },
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
-                child: input(
-                    _secondController, _secondFocusNode, (String value) {}),
+                child:
+                    input(_secondController, _secondFocusNode, (String value) {
+                  //TODO
+                }),
               ),
               Expanded(
                 child: Container(

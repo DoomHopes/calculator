@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 
 class DropDownWidget extends StatefulWidget {
   final List<String> values;
-  final ValueChanged<String> itemCallBack;
   String currentItem;
 
   DropDownWidget({
     Key? key,
     required this.values,
-    required this.itemCallBack,
     required this.currentItem,
   }) : super(key: key);
 

@@ -19,4 +19,6 @@ class ConvectorNotifier extends ChangeNotifier {
     dropDownItems = dropDownElements.elementAt(value);
     notifyListeners();
   }
+
+  void calculate(TextEditingController alienController) {}
 }

@@ -26,7 +26,7 @@ class _ConverterPageState extends State<ConverterPage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 8, vsync: this);
+    _tabController = TabController(length: 6, vsync: this);
   }
 
   @override
@@ -64,21 +64,21 @@ class _ConverterPageState extends State<ConverterPage>
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    Text(
+                    /*Text(
                       'Volume',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                    ),
+                    ),*/
                     Text(
                       'Weight',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    Text(
+                    /*Text(
                       'Data',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                    ),
+                    ),*/
                     Text(
                       'Speed',
                       maxLines: 1,

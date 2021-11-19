@@ -6,9 +6,9 @@ class ConvectorNotifier extends ChangeNotifier {
     MyDropDownElements.squares,
     MyDropDownElements.length,
     MyDropDownElements.temperature,
-    MyDropDownElements.volume,
+    //MyDropDownElements.volume,
     MyDropDownElements.weight,
-    MyDropDownElements.data,
+    //MyDropDownElements.data,
     MyDropDownElements.speed,
     MyDropDownElements.time,
   };
@@ -24,12 +24,10 @@ class ConvectorNotifier extends ChangeNotifier {
 
   void changeFirstValue(String value) {
     _firstDropDownValue = value;
-    print(_firstDropDownValue);
   }
 
   void changeSecondValue(String value) {
     _secondDropDownValue = value;
-    print(_secondDropDownValue);
   }
 
   void calculate(TextEditingController alienController) {}

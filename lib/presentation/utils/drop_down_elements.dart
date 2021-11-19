@@ -14,7 +14,7 @@ class MyDropDownElements {
     'mil'
   ];
 
-  static const List<String> temperature = ['C', 'F', 'K'];
+  static const List<String> temperature = ['C', 'F', 'K', 'R'];
 
   /*static const List<String> volume = [
     'gal',
@@ -26,23 +26,11 @@ class MyDropDownElements {
     'Square feet'
   ];*/
 
-  static const List<String> weight = ['t', 'lb', 'oz', 'kg', 'g'];
+  static const List<String> weight = ['mg', 'g', 'kg', 't', 'lb', 'oz'];
 
   // static const List<String> data = ['bit', 'B', 'KB', 'MB', 'GB', 'TB'];
 
-  static const List<String> speed = [
-    'm/s',
-    'm/h',
-    'km/s',
-    'km/h',
-    'in/s',
-    'in/h',
-    'ft/s',
-    'ft/h',
-    'mi/s',
-    'mi/h',
-    'kn'
-  ];
+  static const List<String> speed = ['m/s', 'km/h', 'ft/s', 'mi/h', 'kn'];
 
   static const List<String> time = ['ms', 's', 'min', 'h', 'd', 'wk'];
 }

@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 class DropDownWidget extends StatefulWidget {
   final List<String> values;
+  final ValueChanged<String> itemCallBack;
   String currentItem;
 
   DropDownWidget({
     Key? key,
     required this.values,
+    required this.itemCallBack,
     required this.currentItem,
   }) : super(key: key);
 
@@ -17,11 +19,19 @@ class DropDownWidget extends StatefulWidget {
 class _DropDownWidgetState extends State<DropDownWidget> {
   String currentItem;
   _DropDownWidgetState(this.currentItem);
+
+  @override
+  void initState() {
+    widget.itemCallBack(widget.currentItem);
+    super.initState();
+  }
+
   @override
   void didUpdateWidget(DropDownWidget oldWidget) {
     if (currentItem != widget.currentItem) {
       setState(() {
         currentItem = widget.currentItem;
+        widget.itemCallBack(widget.currentItem);
       });
     }
     super.didUpdateWidget(oldWidget);
@@ -38,6 +48,7 @@ class _DropDownWidgetState extends State<DropDownWidget> {
       onChanged: (String? newValue) {
         setState(() {
           widget.currentItem = newValue!;
+          widget.itemCallBack(widget.currentItem);
         });
       },
       items: widget.values.map<DropdownMenuItem<String>>((String value) {

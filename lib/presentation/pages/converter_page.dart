@@ -101,6 +101,9 @@ class _ConverterPageState extends State<ConverterPage>
                 child: DropDownWidget(
                   values: dropDownNotifier.dropDownItems,
                   currentItem: dropDownNotifier.dropDownItems[0],
+                  itemCallBack: (String status) {
+                    dropDownNotifier.changeFirstValue(status);
+                  },
                 ),
               ),
               Padding(
@@ -115,6 +118,9 @@ class _ConverterPageState extends State<ConverterPage>
                 child: DropDownWidget(
                   values: dropDownNotifier.dropDownItems,
                   currentItem: dropDownNotifier.dropDownItems[0],
+                  itemCallBack: (String status) {
+                    dropDownNotifier.changeSecondValue(status);
+                  },
                 ),
               ),
               Padding(

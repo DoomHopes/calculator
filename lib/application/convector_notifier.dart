@@ -14,10 +14,22 @@ class ConvectorNotifier extends ChangeNotifier {
   };
 
   late List<String> dropDownItems = dropDownElements.elementAt(0);
+  String _firstDropDownValue = '';
+  String _secondDropDownValue = '';
 
   void changeDropDownItems(value) {
     dropDownItems = dropDownElements.elementAt(value);
     notifyListeners();
+  }
+
+  void changeFirstValue(String value) {
+    _firstDropDownValue = value;
+    print(_firstDropDownValue);
+  }
+
+  void changeSecondValue(String value) {
+    _secondDropDownValue = value;
+    print(_secondDropDownValue);
   }
 
   void calculate(TextEditingController alienController) {}

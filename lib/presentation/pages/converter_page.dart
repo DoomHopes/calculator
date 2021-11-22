@@ -183,7 +183,7 @@ class _ConverterPageState extends State<ConverterPage>
                           _secondController, _firstFocusNode, _secondFocusNode),
                       buildButtonRow(context, '1', '2', '3', _firstController,
                           _secondController, _firstFocusNode, _secondFocusNode),
-                      buildButtonRow(context, '0', '', '<', _firstController,
+                      buildButtonRow(context, 'AC', '0', '<', _firstController,
                           _secondController, _firstFocusNode, _secondFocusNode),
                     ],
                   ),
@@ -217,29 +217,37 @@ Widget buildButtonRow(
               text: text,
               onClicked: () {
                 if (_firstFocusNode.hasFocus) {
-                  if (text == '<') {
-                    if (_firstController.text.isEmpty) {
-                      _secondController.clear();
-                      return;
+                  if (text != 'AC') {
+                    if (text == '<') {
+                      if (_firstController.text.isEmpty) {
+                        _secondController.clear();
+                        return;
+                      } else {
+                        _firstController.text = _firstController.text
+                            .substring(0, _firstController.text.length - 1);
+                      }
                     } else {
-                      _firstController.text = _firstController.text
-                          .substring(0, _firstController.text.length - 1);
+                      _firstController.text += text;
                     }
                   } else {
-                    _firstController.text += text;
+                    _firstController.clear();
                   }
                 }
                 if (_secondFocusNode.hasFocus) {
-                  if (text == '<') {
-                    if (_secondController.text.isEmpty) {
-                      _firstController.clear();
-                      return;
+                  if (text != 'AC') {
+                    if (text == '<') {
+                      if (_secondController.text.isEmpty) {
+                        _firstController.clear();
+                        return;
+                      } else {
+                        _secondController.text = _secondController.text
+                            .substring(0, _secondController.text.length - 1);
+                      }
                     } else {
-                      _secondController.text = _secondController.text
-                          .substring(0, _secondController.text.length - 1);
+                      _secondController.text += text;
                     }
                   } else {
-                    _secondController.text += text;
+                    _secondController.clear();
                   }
                 }
               },

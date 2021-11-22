@@ -1,4 +1,5 @@
 import 'package:calculator/application/calculate_notifier.dart';
+import 'package:calculator/infrastructure/model/expression_model.dart';
 
 import 'package:calculator/presentation/pages/converter_page.dart';
 import 'package:calculator/presentation/utils/colors.dart';
@@ -22,9 +23,9 @@ class HomePage extends StatelessWidget {
       ),
       body: SafeArea(
         child: Column(
-          children: <Widget>[
-            const Expanded(child: ResultWidget()),
-            Expanded(child: buildButtons(context), flex: 3),
+          children: const <Widget>[
+            Expanded(child: ResultWidget()),
+            Expanded(child: BuildButtons(), flex: 3),
           ],
         ),
       ),
@@ -32,11 +33,53 @@ class HomePage extends StatelessWidget {
   }
 }
 
-Widget buildButtons(BuildContext context) => Scaffold(
+class BuildButtons extends StatefulWidget {
+  const BuildButtons({Key? key}) : super(key: key);
+
+  @override
+  State<BuildButtons> createState() => _BuildButtonsState();
+}
+
+class _BuildButtonsState extends State<BuildButtons> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
       drawer: Drawer(
         //TODO History
-        child: Container(
-          color: Colors.green[900],
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                width: double.maxFinite,
+                child: ListView.builder(
+                  itemCount: expressionBox.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final exp = expressionBox.get(index) as Expression;
+                    return ListTile(
+                      title: Text(
+                        exp.expression,
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 40,
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  expressionBox.clear();
+                  Navigator.pop(context);
+                  setState(() {});
+                },
+                child: const Text('Clear history'),
+              ),
+            )
+          ],
         ),
       ),
       appBar: AppBar(
@@ -83,6 +126,8 @@ Widget buildButtons(BuildContext context) => Scaffold(
         ),
       ),
     );
+  }
+}
 
 Widget buildButtonRow(
   BuildContext context,

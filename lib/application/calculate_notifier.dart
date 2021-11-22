@@ -1,7 +1,7 @@
-import 'package:calculator/infrastructure/database/database_hive.dart';
 import 'package:calculator/infrastructure/model/expression_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:function_tree/function_tree.dart';
+import 'package:hive/hive.dart';
 
 enum Operations {
   plus,
@@ -13,7 +13,7 @@ enum Operations {
   rightBracket,
 }
 
-final hive = DatabaseHive();
+final expressionBox = Hive.box('expressionbox');
 
 class CalculateNotifier extends ChangeNotifier {
   late String result = '0';
@@ -58,6 +58,10 @@ class CalculateNotifier extends ChangeNotifier {
           notifyListeners();
         }
         calculate();
+
+        Expression expressionHive = Expression(showExpression() + '=' + result);
+        expressionBox.add(expressionHive);
+        notifyListeners();
         return;
       }
 
@@ -158,8 +162,6 @@ class CalculateNotifier extends ChangeNotifier {
     for (int i = 0; i < expression.length; i++) {
       exp += expression[i];
     }
-    Expression expressionHive = Expression(exp + '=' + result);
-    hive.addExpression(expressionHive);
     return exp;
   }
 

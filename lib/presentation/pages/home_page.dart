@@ -40,18 +40,22 @@ class BuildButtons extends StatefulWidget {
   State<BuildButtons> createState() => _BuildButtonsState();
 }
 
+/* */
+
+/*, */
+
 class _BuildButtonsState extends State<BuildButtons> {
   @override
   Widget build(BuildContext context) {
     final expressionBox = context.read(calculateNotifier).expressionBox;
     return Scaffold(
       drawer: Drawer(
-        child: Column(
-          children: <Widget>[
-            Consumer(
-              builder: (context, watch, child) {
-                final drawerNotifier = watch(calculateNotifier);
-                return Expanded(
+        child: Consumer(
+          builder: (context, watch, child) {
+            final drawerNotifier = watch(calculateNotifier);
+            return Column(
+              children: <Widget>[
+                Expanded(
                   child: SizedBox(
                     width: double.maxFinite,
                     child: ListView.builder(
@@ -70,22 +74,21 @@ class _BuildButtonsState extends State<BuildButtons> {
                       },
                     ),
                   ),
-                );
-              },
-            ),
-            SizedBox(
-              height: 40,
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  expressionBox.clear();
-                  Navigator.pop(context);
-                  setState(() {});
-                },
-                child: const Text('Clear history'),
-              ),
-            )
-          ],
+                ),
+                SizedBox(
+                  height: 40,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      drawerNotifier.expressionBox.clear();
+                      Navigator.pop(context);
+                    },
+                    child: const Text('Clear history'),
+                  ),
+                )
+              ],
+            );
+          },
         ),
       ),
       appBar: AppBar(

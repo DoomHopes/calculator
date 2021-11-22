@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
-import 'infrastructure/expression_model.dart';
+import 'infrastructure/model/expression_model.dart';
 import 'presentation/pages/home_page.dart';
 
 Future<void> main() async {

@@ -141,9 +141,9 @@ class _ConverterPageState extends State<ConverterPage>
                   onChanged: () {
                     dropDownNotifier.calculate(
                       alienController: _secondController,
+                      value: _firstController.text,
                       first: _firstDropDownValue,
                       second: _secondDropDownValue,
-                      value: _firstController.text,
                     );
                   },
                 ),

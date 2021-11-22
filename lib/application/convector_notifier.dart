@@ -25,8 +25,9 @@ class ConvectorNotifier extends ChangeNotifier {
     required String first,
     required String second,
   }) {
+    if (value.isEmpty) return;
     if (dropDownItems == MyDropDownElements.squares) {
-      final val = int.parse(value);
+      final num val = int.parse(value);
       final Area area = Area(val, first);
       final num valueIn = area.valueIn(second);
       alienController.text = valueIn.toString();

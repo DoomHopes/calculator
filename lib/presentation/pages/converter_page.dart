@@ -24,8 +24,16 @@ class _ConverterPageState extends State<ConverterPage>
   final FocusNode _secondFocusNode = FocusNode();
 
   @override
+  void didChangeDependencies() {
+    context.read(converterNotifier).dropDownItems =
+        context.read(converterNotifier).dropDownElements.elementAt(0);
+    super.didChangeDependencies();
+  }
+
+  @override
   void initState() {
     _tabController = TabController(length: 6, vsync: this);
+    _firstFocusNode.requestFocus();
     super.initState();
   }
 

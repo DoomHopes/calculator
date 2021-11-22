@@ -131,7 +131,6 @@ class _ConverterPageState extends State<ConverterPage>
                   textEditingController: _firstController,
                   focusNode: _firstFocusNode,
                   onChanged: () {
-                    print('On Changed');
                     dropDownNotifier.calculate(
                       alienController: _secondController,
                       first: _firstDropDownValue,
@@ -184,7 +183,7 @@ class _ConverterPageState extends State<ConverterPage>
                           _secondController, _firstFocusNode, _secondFocusNode),
                       buildButtonRow(context, '1', '2', '3', _firstController,
                           _secondController, _firstFocusNode, _secondFocusNode),
-                      buildButtonRow(context, '0', '.', '<', _firstController,
+                      buildButtonRow(context, '0', '', '<', _firstController,
                           _secondController, _firstFocusNode, _secondFocusNode),
                     ],
                   ),

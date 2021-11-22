@@ -27,10 +27,8 @@ class ConvectorNotifier extends ChangeNotifier {
     required String first,
     required String second,
   }) {
-    print('calculate');
     if (dropDownItems == MyDropDownElements.squares) {
-      final val = num.tryParse(value);
-      if (val == null) return;
+      final val = int.parse(value);
       final Area area = Area(val, first);
       final num valueIn = area.valueIn(second);
       alienController.text = valueIn.toString();
@@ -43,28 +41,28 @@ class ConvectorNotifier extends ChangeNotifier {
       alienController.text = valueIn.toString();
     }
     if (dropDownItems == MyDropDownElements.temperature) {
-      final val = num.tryParse(value);
+      final val = int.tryParse(value);
       if (val == null) return;
       final Temperature tem = Temperature(val, first);
       final num valueIn = tem.valueIn(second);
       alienController.text = valueIn.toString();
     }
     if (dropDownItems == MyDropDownElements.speed) {
-      final val = num.tryParse(value);
+      final val = int.tryParse(value);
       if (val == null) return;
       final Speed speed = Speed(val, first);
       final num valueIn = speed.valueIn(second);
       alienController.text = valueIn.toString();
     }
     if (dropDownItems == MyDropDownElements.time) {
-      final val = num.tryParse(value);
+      final val = int.tryParse(value);
       if (val == null) return;
       final Time time = Time(val, first);
       final num valueIn = time.valueIn(second);
       alienController.text = valueIn.toString();
     }
     if (dropDownItems == MyDropDownElements.weight) {
-      final val = num.tryParse(value);
+      final val = int.tryParse(value);
       if (val == null) return;
       final Mass mass = Mass(val, first);
       final num valueIn = mass.valueIn(second);

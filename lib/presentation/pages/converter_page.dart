@@ -25,21 +25,24 @@ class _ConverterPageState extends State<ConverterPage>
 
   @override
   void initState() {
-    super.initState();
     _tabController = TabController(length: 6, vsync: this);
+    super.initState();
   }
 
-  String _firstDropDownValue = '';
-  String _secondDropDownValue = '';
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  late String _firstDropDownValue;
+  late String _secondDropDownValue;
 
   void changeFirstValue(String value) {
     _firstDropDownValue = value;
-    _secondController.text = '';
   }
 
   void changeSecondValue(String value) {
     _secondDropDownValue = value;
-    _firstController.text = '';
   }
 
   @override
@@ -123,15 +126,17 @@ class _ConverterPageState extends State<ConverterPage>
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
+                //! First input
                 child: InputWidget(
                   textEditingController: _firstController,
                   focusNode: _firstFocusNode,
                   onChanged: () {
+                    print('On Changed');
                     dropDownNotifier.calculate(
-                      _secondController,
-                      _firstController.text,
-                      _firstDropDownValue,
-                      _secondDropDownValue,
+                      alienController: _secondController,
+                      first: _firstDropDownValue,
+                      second: _secondDropDownValue,
+                      value: _firstController.text,
                     );
                   },
                 ),
@@ -149,15 +154,16 @@ class _ConverterPageState extends State<ConverterPage>
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
+                //! Second input
                 child: InputWidget(
                   textEditingController: _secondController,
                   focusNode: _secondFocusNode,
                   onChanged: () {
                     dropDownNotifier.calculate(
-                      _firstController,
-                      _secondController.text,
-                      _secondDropDownValue,
-                      _firstDropDownValue,
+                      alienController: _firstController,
+                      first: _secondDropDownValue,
+                      second: _firstDropDownValue,
+                      value: _secondController.text,
                     );
                   },
                 ),

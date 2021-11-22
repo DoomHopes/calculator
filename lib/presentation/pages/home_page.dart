@@ -40,14 +40,9 @@ class BuildButtons extends StatefulWidget {
   State<BuildButtons> createState() => _BuildButtonsState();
 }
 
-/* */
-
-/*, */
-
 class _BuildButtonsState extends State<BuildButtons> {
   @override
   Widget build(BuildContext context) {
-    final expressionBox = context.read(calculateNotifier).expressionBox;
     return Scaffold(
       drawer: Drawer(
         child: Consumer(

@@ -1,3 +1,5 @@
+import 'package:calculator/infrastructure/database/database_hive.dart';
+import 'package:calculator/infrastructure/model/expression_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:function_tree/function_tree.dart';
 
@@ -10,6 +12,8 @@ enum Operations {
   leftBracket,
   rightBracket,
 }
+
+final hive = DatabaseHive();
 
 class CalculateNotifier extends ChangeNotifier {
   late String result = '0';
@@ -63,7 +67,6 @@ class CalculateNotifier extends ChangeNotifier {
         return;
       }
       if (operations.containsKey(symbol)) {
-        // calculate();
         // TODO: refactor this if's
         final lastExpressionSymbol = expression.last;
         final lastSymbolIsOperator =
@@ -155,6 +158,8 @@ class CalculateNotifier extends ChangeNotifier {
     for (int i = 0; i < expression.length; i++) {
       exp += expression[i];
     }
+    Expression expressionHive = Expression(exp + '=' + result);
+    hive.addExpression(expressionHive);
     return exp;
   }
 

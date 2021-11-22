@@ -3,11 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
+import 'infrastructure/expression_model.dart';
 import 'presentation/pages/home_page.dart';
 
 Future<void> main() async {
   final appDocumentDir = await path_provider.getApplicationDocumentsDirectory();
   Hive.init(appDocumentDir.path);
+  Hive.registerAdapter(ExpressionAdapter());
   runApp(const ProviderScope(child: MyApp()));
 }
 

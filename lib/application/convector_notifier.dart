@@ -23,7 +23,6 @@ class ConvectorNotifier extends ChangeNotifier {
 
   void calculate(TextEditingController alienController, String value,
       String first, String second) {
-    //TODO calculate
     if (dropDownItems == MyDropDownElements.squares) {
       num valueIn = Area(double.parse(value), first).valueIn(second);
       alienController.text = valueIn.toString();

@@ -43,29 +43,35 @@ class BuildButtons extends StatefulWidget {
 class _BuildButtonsState extends State<BuildButtons> {
   @override
   Widget build(BuildContext context) {
+    final expressionBox = context.read(calculateNotifier).expressionBox;
     return Scaffold(
       drawer: Drawer(
-        //TODO History
         child: Column(
           children: <Widget>[
-            Expanded(
-              child: Container(
-                width: double.maxFinite,
-                child: ListView.builder(
-                  itemCount: expressionBox.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final exp = expressionBox.get(index) as Expression;
-                    return ListTile(
-                      title: Text(
-                        exp.expression,
-                        style: const TextStyle(
-                          fontSize: 20,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
+            Consumer(
+              builder: (context, watch, child) {
+                final drawerNotifier = watch(calculateNotifier);
+                return Expanded(
+                  child: SizedBox(
+                    width: double.maxFinite,
+                    child: ListView.builder(
+                      itemCount: drawerNotifier.expressionBox.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        final exp = drawerNotifier.expressionBox.get(index)
+                            as Expression;
+                        return ListTile(
+                          title: Text(
+                            exp.expression,
+                            style: const TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                );
+              },
             ),
             SizedBox(
               height: 40,

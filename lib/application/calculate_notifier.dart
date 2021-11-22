@@ -13,12 +13,11 @@ enum Operations {
   rightBracket,
 }
 
-final expressionBox = Hive.box('expressionbox');
-
 class CalculateNotifier extends ChangeNotifier {
   late String result = '0';
   late List<String> expression = [''];
   String number = '';
+  final expressionBox = Hive.box('expressionbox');
 
   Map<String, Operations> operations = {
     '+': Operations.plus,
@@ -29,6 +28,12 @@ class CalculateNotifier extends ChangeNotifier {
     '(': Operations.leftBracket,
     ')': Operations.rightBracket,
   };
+
+  void addExpToHive() {
+    Expression expressionHive = Expression(showExpression() + '=' + result);
+    expressionBox.add(expressionHive);
+    notifyListeners();
+  }
 
   void onClick(String symbol) {
     if (symbol != 'AC') {
@@ -58,10 +63,7 @@ class CalculateNotifier extends ChangeNotifier {
           notifyListeners();
         }
         calculate();
-
-        Expression expressionHive = Expression(showExpression() + '=' + result);
-        expressionBox.add(expressionHive);
-        notifyListeners();
+        addExpToHive();
         return;
       }
 

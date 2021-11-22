@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-//part 'expression.g.dart';
+part 'expression_model.g.dart';
 
 @HiveType(typeId: 0)
 class Expression {

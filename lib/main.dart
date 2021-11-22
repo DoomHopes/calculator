@@ -6,8 +6,8 @@ import 'package:path_provider/path_provider.dart' as path_provider;
 import 'presentation/pages/home_page.dart';
 
 Future<void> main() async {
-  /*final appDocumentDir = await path_provider.getApplicationDocumentsDirectory();
-  Hive.init(appDocumentDir.path);*/
+  final appDocumentDir = await path_provider.getApplicationDocumentsDirectory();
+  Hive.init(appDocumentDir.path);
   runApp(const ProviderScope(child: MyApp()));
 }
 

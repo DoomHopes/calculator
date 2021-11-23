@@ -1,4 +1,4 @@
-import 'package:calculator/infrastructure/model/expression_model.dart';
+import 'package:calculator/domain/model/expression_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:function_tree/function_tree.dart';
 import 'package:hive/hive.dart';

@@ -1,5 +1,5 @@
 import 'package:calculator/application/calculate_notifier.dart';
-import 'package:calculator/infrastructure/model/expression_model.dart';
+import 'package:calculator/domain/model/expression_model.dart';
 
 import 'package:calculator/presentation/pages/converter_page.dart';
 import 'package:calculator/presentation/utils/colors.dart';
